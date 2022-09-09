@@ -28,7 +28,7 @@ DistilLog consists of the following components:
 ## Demo
 - Train/Test teacher-student Model
 
-See [notebook](demo/DistilLog.ipynb)
+See [notebook](demo/DistilLog_on_HDFS.ipynb)
 ## Data and Models
 Datasets: [Data](https://zenodo.org/record/3227177)
 
