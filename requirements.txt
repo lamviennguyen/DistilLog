@@ -1,0 +1,8 @@
+torch
+torchvision
+tqdm
+torchinfo
+overrides
+pandas
+numpy
+pytorch-quantization
