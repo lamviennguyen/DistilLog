@@ -41,29 +41,29 @@ Pre-trained models can be found here: [HDFSmodel](distillog/datasets/HDFS/model.
 
 ### 4.2. RQ1: Effectiveness and efficiency
 - Effectiveness
-<p align="center"><img src="docs/images/RQ1_table2.png" width="600"><br> Comparison with different methods in effectiveness</p>
+<p align="center"><img src="docs/images/RQ1_table2.png" width="500"><br> Comparison with different methods in effectiveness</p>
 
 - Efficiency
-<p align="center"><img src="docs/images/RQ1_table3.png" width="600"><br> Comparison with different methods in efficiency</p>
-<p align="center"><img src="docs/images/RQ1_fig4.png" width="600"><br> Comparison in terms of the model size and number of parameters</p>
+<p align="center"><img src="docs/images/RQ1_table3.png" width="500"><br> Comparison with different methods in efficiency</p>
+<p align="center"><img src="docs/images/RQ1_fig4.png" width="450"><br> Comparison in terms of the model size and number of parameters</p>
 
 ### 4.3. RQ2: Comparison with Different Model Compression Techniques
 We compare DistilLog with other variants: 
 - **Teacher**: We directly leverage the large teacher model for the evaluation and report the results
 - **DistilLog_NoKD**: We use a model with the same student’s architecture of DistilLog and train it from
 scratch without Knowledge Distillation 
-<p align="center"><img src="docs/images/RQ2_table4.png" width="600"><br>  Results of DistilLog without Knowledge Distillation</p>
+<p align="center"><img src="docs/images/RQ2_table4.png" width="500"><br>  Results of DistilLog without Knowledge Distillation</p>
 
 - **DistilLog_prune**: Instead of compressing the teacher model with Knowledge Distillation, we utilize model pruning to eliminate the weights with low magnitude from the teacher model
 - **DistilLog_quant**: We replace Knowledge Distillation in DistilLog with the quantization technique to represent the weights and activations in the teacher model with lower precision data types (e.g., 8-bit integer)
-<p align="center"><img src="docs/images/RQ2_table5.png" width="600"><br> Comparison with different model compression techniques</p>
-<p align="center"><img src="docs/images/RQ2_fig5.png" width="600"><br> Comparison in terms of the model size and number of parameters</p>
+<p align="center"><img src="docs/images/RQ2_table5.png" width="500"><br> Comparison with different model compression techniques</p>
+<p align="center"><img src="docs/images/RQ2_fig5.png" width="450"><br> Comparison in terms of the model size and number of parameters</p>
 
 ### 4.4. RQ3: Ablation Study
-<p align="center"><img src="docs/images/RQ3_table6.png" width="600"><br>Set up of the BGL dataset in different selections of training data</p>
-<p align="center"><img src="docs/images/RQ3_table7.png" width="600"><br>Results with different training data selections on the BGL dataset</p>
-<p align="center"><img src="docs/images/RQ3_fig6.png" width="600"><br> Results of DistilLog on the HDFS dataset with different hidden sizes and numbers of GRU layers</p>
+<p align="center"><img src="docs/images/RQ3_table6.png" width="500"><br>Set up of the BGL dataset in different selections of training data</p>
+<p align="center"><img src="docs/images/RQ3_table7.png" width="450"><br>Results with different training data selections on the BGL dataset</p>
+<p align="center"><img src="docs/images/RQ3_fig6.png" width="500"><br> Results of DistilLog on the HDFS dataset with different hidden sizes and numbers of GRU layers</p>
 
 ## 5. A case study on end devices
 The result of DistilLog and LightLog on a  Raspberry Pi 4 device with an ARM Cortex-A72 CPU (1.5GHz) and 4GB RAM.
-<p align="center"><img src="docs/images/CaseStudy_table8.png" width="600"><br> Results of our case study on an end device</p>
+<p align="center"><img src="docs/images/CaseStudy_table8.png" width="450"><br> Results of our case study on an end device</p>
