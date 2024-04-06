@@ -2,7 +2,7 @@
 Repository for the paper: Efficient Log-based Anomaly Detection with Knowledge Distillation
 
 
-**Abstract**: Logs are produced by many systems for troubleshooting purposes. Detecting abnormal events is crucial to maintain regular operation and secure the security of systems. Despite the achievements of deep learning models on anomaly detection, it still remains challenging to apply these deep learning models on edge devices such as IoT devices, due to the limitation of computational resources on these devices. We identify two main problems of adopting these deep learning models in practice, including: (1) they cannot deploy on resource-constrained devices because of the size and speed of large models, and (2) they cannot achieve satisfactory detection accuracy with simple models.  In this work, we proposed a novel lightweight anomaly detection method from system logs, DistilLog to overcome these problems. DistilLog utilizes a pre-trained word2vec model to represent log event templates as semantic vectors, incorporated with the PCA dimensionality reduction algorithm to minimize computational and storage burden. The knowledge distillation technique is applied to reduce the size of the detection model meanwhile maintaining the high detection accuracy. The experimental results show that DistilLog can achieve high F-measures of 0.964 and 0.961 on HDFS and BGL datasets while maintaining the minimized model size and fastest detection speed. This effectiveness and efficiency demonstrate the ability to deploy the proposed model on resource-constrained systems such as IoT devices.
+**Abstract**: Logs are produced by many systems for troubleshooting purposes. Detecting abnormal events is crucial to maintain regular operation and secure the security of systems. Despite the achievements of deep learning models on anomaly detection, it still remains challenging to apply these deep learning models in some scenarios, one popular case that deploying on resources-constrained scenarios such as IoT devices, due to the limitation of computational resources on these devices. We identify two main problems of adopting these deep learning models in practice, including: (1) they cannot deploy on resource-constrained devices because of the size and speed of large models, and (2) they cannot achieve satisfactory detection accuracy with simple models.  In this work, we proposed a novel lightweight anomaly detection method from system logs, DistilLog to overcome these problems. DistilLog utilizes a pre-trained word2vec model to represent log event templates as semantic vectors, incorporated with the PCA dimensionality reduction algorithm to minimize computational and storage burden. The Knowledge Distillation technique is applied to reduce the size of the detection model meanwhile maintaining the high detection accuracy. The experimental results show that DistilLog can achieve high F-measures of 0.964 and 0.961 on HDFS and BGL datasets while maintaining the minimized model size and fastest detection speed. This effectiveness and efficiency demonstrate the potential for widespread use in most scenatios, by showing the ability to deploy the proposed model on resource-constrained systems.
 
 ## I. Framework
 <p align="center"><img src="https://i.ibb.co/Y01YfZs/Framework-of-Distil-Log.png" width="502"><br>An overview of DistilLog</p>
@@ -45,9 +45,10 @@ Pre-trained models can be found here: [HDFSmodel](distillog/datasets/HDFS/model.
 
 - Efficiency
 <p align="center"><img src="docs/images/RQ1_table3.png" width="500"><br> Comparison with different methods in efficiency</p>
-<p align="center"><img src="docs/images/RQ1_fig4.png" width="450"><br> Comparison in terms of the model size and number of parameters</p>
+<p align="center"><img src="docs/images/RQ1_fig4.png" width="450"><br> Comparison in terms of the model size and number of parameters </p>
 
-### 4.3. RQ2: Comparison with Different Model Compression Techniques
+### 4.3. RQ2: Contribution of main components to DistilLog
+#### 4.3.1. Knowledge Distillation
 We compare DistilLog with other variants: 
 - **Teacher**: We directly leverage the large teacher model for the evaluation and report the results
 - **DistilLog_NoKD**: We use a model with the same student’s architecture of DistilLog and train it from
@@ -56,14 +57,22 @@ scratch without Knowledge Distillation
 
 - **DistilLog_prune**: Instead of compressing the teacher model with Knowledge Distillation, we utilize model pruning to eliminate the weights with low magnitude from the teacher model
 - **DistilLog_quant**: We replace Knowledge Distillation in DistilLog with the quantization technique to represent the weights and activations in the teacher model with lower precision data types (e.g., 8-bit integer)
-<p align="center"><img src="docs/images/RQ2_table5.png" width="500"><br> Comparison with different model compression techniques</p>
+<p align="center"><img src="docs/images/RQ2_table5.png" width="550"><br> Comparison with different model compression techniques</p>
 <p align="center"><img src="docs/images/RQ2_fig5.png" width="450"><br> Comparison in terms of the model size and number of parameters</p>
 
+#### 4.3.2. GRU Model
+We evaluate the contribution of GRU by comparing it with those variants of DistilLog using LSTM (Long
+short-term memory) and CNN (Convolutional Neural Network). These model types are widely used for log-based anomaly detection due to their high accuracy.
+<p align="center"><img src="docs/images/RQ2_table6.png" width="450"><br> Comparison with different deep learning model types</p>
+<p align="center"><img src="docs/images/RQ2_fig6.png" width="500"><br> Comparison in terms of the model size and number of parameters with different model types</p>
+
+
+
 ### 4.4. RQ3: Ablation Study
-<p align="center"><img src="docs/images/RQ3_table6.png" width="500"><br>Set up of the BGL dataset in different selections of training data</p>
-<p align="center"><img src="docs/images/RQ3_table7.png" width="450"><br>Results with different training data selections on the BGL dataset</p>
+<p align="center"><img src="docs/images/RQ3_table6.png" width="550"><br>Set up of the BGL dataset in different selections of training data</p>
+<p align="center"><img src="docs/images/RQ3_table7.png" width="400"><br>Results with different training data selections on the BGL dataset</p>
 <p align="center"><img src="docs/images/RQ3_fig6.png" width="500"><br> Results of DistilLog on the HDFS dataset with different hidden sizes and numbers of GRU layers</p>
 
 ## 5. A case study on end devices
 The result of DistilLog and LightLog on a  Raspberry Pi 4 device with an ARM Cortex-A72 CPU (1.5GHz) and 4GB RAM.
-<p align="center"><img src="docs/images/CaseStudy_table8.png" width="450"><br> Results of our case study on an end device</p>
+<p align="center"><img src="docs/images/CaseStudy_table8.png" width="430"><br> Results of our case study on an end device</p>
